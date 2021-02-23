@@ -5,8 +5,8 @@
 
 class Timestamps {
 	private:
-		unsigned int getTimestamp(int referenceYear, int year, int month, int day, int hour, int minute, int second, int setTimeZoneOffset);
-		int* getDateFromTimestamp(int timestamp, int timeOffset=0, int referenceYear=1970);
+		uint64_t getTimestamp(int referenceYear, int year, int month, int day, int hour, int minute, int second, int setTimeZoneOffset);
+		int* getDateFromTimestamp(uint64_t timestamp, int timeOffset=0, int referenceYear=1970);
 	/*
 		static int secondsPerHour;
 		static int secondsPerDay;
@@ -23,16 +23,16 @@ class Timestamps {
 
 	public:
 		Timestamps(int setTimeZoneOffset=0);
-		unsigned int getTimestampUNIX(int year, int month, int day, int hour, int minute, int second, int setTimeZoneOffset=0);
-		unsigned int getTimestampNTP(int year, int month, int day, int hour, int minute, int second, int setTimeZoneOffset=0);
+		uint64_t getTimestampUNIX(int year, int month, int day, int hour, int minute, int second, int setTimeZoneOffset=0);
+		uint64_t getTimestampNTP(int year, int month, int day, int hour, int minute, int second, int setTimeZoneOffset=0);
 		bool isLeapYear(unsigned int year);
 
-		int getYears(int timestamp, int timeOffset=0, int referenceYear=1970);
-		int getMonths(int timestamp, int timeOffset=0, int referenceYear=1970);
-		int getDays(int timestamp, int timeOffset=0, int referenceYear=1970);
-		int getHours(int timestamp, int timeOffset=0, int referenceYear=1970);
-		int getMinutes(int timestamp, int timeOffset=0, int referenceYear=1970);
-		int getSeconds(int timestamp, int timeOffset=0, int referenceYear=1970);
+		int getYears(uint64_t timestamp, int timeOffset=0, int referenceYear=1970);
+		int getMonths(uint64_t timestamp, int timeOffset=0, int referenceYear=1970);
+		int getDays(uint64_t timestamp, int timeOffset=0, int referenceYear=1970);
+		int getHours(uint64_t timestamp, int timeOffset=0, int referenceYear=1970);
+		int getMinutes(uint64_t timestamp, int timeOffset=0, int referenceYear=1970);
+		int getSeconds(uint64_t timestamp, int timeOffset=0, int referenceYear=1970);
 
 
 	};

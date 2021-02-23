@@ -29,8 +29,8 @@ bool Timestamps::isLeapYear(unsigned int year) {
 	}
 }
 
-unsigned int Timestamps::getTimestamp(int referenceYear, int year, int month, int day, int hour, int minute, int second, int timeZoneOffset) {
-	unsigned int timestamp=0;
+uint64_t Timestamps::getTimestamp(int referenceYear, int year, int month, int day, int hour, int minute, int second, int timeZoneOffset) {
+	uint64_t timestamp=0;
 	// Either use the time zone offset value from instantiating or the given paramter
 	/*
 		1. _timeZoneOffset is set AND timeZoneOffset is set -> use timeZoneOffset
@@ -89,7 +89,7 @@ unsigned int Timestamps::getTimestamp(int referenceYear, int year, int month, in
 	return timestamp;
 }
 
-unsigned int Timestamps::getTimestampUNIX(int year, int month, int day, int hour, int minute, int second, int timeZoneOffset) {
+uint64_t Timestamps::getTimestampUNIX(int year, int month, int day, int hour, int minute, int second, int timeZoneOffset) {
 
 	if(timeZoneOffset == 0) {
 		timeZoneOffset = _timeZoneOffset;
@@ -97,14 +97,14 @@ unsigned int Timestamps::getTimestampUNIX(int year, int month, int day, int hour
 	return getTimestamp(1970, year, month, day, hour, minute, second, timeZoneOffset);
 }
 
-unsigned int Timestamps::getTimestampNTP(int year, int month, int day, int hour, int minute, int second, int timeZoneOffset) {
+uint64_t Timestamps::getTimestampNTP(int year, int month, int day, int hour, int minute, int second, int timeZoneOffset) {
 	if(timeZoneOffset == 0) {
 		timeZoneOffset = _timeZoneOffset;
 	}
 	return getTimestamp(1900, year, month, day, hour, minute, second, timeZoneOffset);
 }
 
-int* Timestamps::getDateFromTimestamp(int timestamp, int timeOffset, int referenceYear) {
+int* Timestamps::getDateFromTimestamp(uint64_t timestamp, int timeOffset, int referenceYear) {
 	int y = referenceYear; // this returns the current year. Default is referenceYear, which will be incremented.
 	int month = 0; // this returns the current month
 
@@ -148,31 +148,31 @@ int* Timestamps::getDateFromTimestamp(int timestamp, int timeOffset, int referen
 }
 
 // Returns year of given timestamp
-int Timestamps::getYears(int timestamp, int timeOffset, int referenceYear) {
+int Timestamps::getYears(uint64_t timestamp, int timeOffset, int referenceYear) {
 	return getDateFromTimestamp(timestamp, timeOffset, referenceYear)[0];
 }
 
 // Returns month of given timestamp
-int Timestamps::getMonths(int timestamp, int timeOffset, int referenceYear) {
+int Timestamps::getMonths(uint64_t timestamp, int timeOffset, int referenceYear) {
 	return getDateFromTimestamp(timestamp, timeOffset, referenceYear)[1];
 }
 
 // Returns day of given timestamp
-int Timestamps::getDays(int timestamp, int timeOffset, int referenceYear) {
+int Timestamps::getDays(uint64_t timestamp, int timeOffset, int referenceYear) {
 	return getDateFromTimestamp(timestamp, timeOffset, referenceYear)[2];
 }
 
 // Returns hours of given timestamp
-int Timestamps::getHours(int timestamp, int timeOffset, int referenceYear) {
+int Timestamps::getHours(uint64_t timestamp, int timeOffset, int referenceYear) {
 	return getDateFromTimestamp(timestamp, timeOffset, referenceYear)[3];
 }
 
 // Returns minutes of given timestamp
-int Timestamps::getMinutes(int timestamp, int timeOffset, int referenceYear) {
+int Timestamps::getMinutes(uint64_t timestamp, int timeOffset, int referenceYear) {
 	return getDateFromTimestamp(timestamp, timeOffset, referenceYear)[4];
 }
 
 // Returns seconds of given timestamp
-int Timestamps::getSeconds(int timestamp, int timeOffset, int referenceYear) {
+int Timestamps::getSeconds(uint64_t timestamp, int timeOffset, int referenceYear) {
 	return getDateFromTimestamp(timestamp, timeOffset, referenceYear)[5];
 }
